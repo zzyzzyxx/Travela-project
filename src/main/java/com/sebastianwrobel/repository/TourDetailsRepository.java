@@ -7,5 +7,5 @@ import com.sebastianwrobel.domain.TourDetails;
 
 @Repository
 public interface TourDetailsRepository extends JpaRepository<TourDetails, Integer> {
-//taktyczny wpis numer 2
+
 }

@@ -44,7 +44,7 @@ public class TourController {
 	}
 	
 	@GetMapping("/deleteTour/{id}")
-	public String deleteTour(@PathVariable int id) {
+	public String deleteTour(@PathVariable Integer id) {
 		Tour tour = tourService.findById(id);
 		if(tour != null) {
 			tourService.delete(id);
@@ -53,12 +53,19 @@ public class TourController {
 	}
 	
 	@GetMapping("/editTour/{id}")
-	public String editTour(@PathVariable int id, ModelMap model) {
+	public String editTour(@PathVariable Integer id, ModelMap model) {
 		Tour tour = tourService.findById(id);
 		if(tour != null) {
 			model.addAttribute("tour", tour);
 			return "form";
 		}
+		return "redirect:/showOffer";
+	}
+	
+	@GetMapping("/addUserToTour/{id}/{userId}")
+	public String addUserToTour(@PathVariable Integer id, @PathVariable Integer userId) {
+		tourService.addUserToTour(id, userId);
+		
 		return "redirect:/showOffer";
 	}
 }
