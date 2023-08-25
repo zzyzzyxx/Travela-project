@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.form {
+	font-size: 18px;
+}
+
+.error {
+	color: red;
+	font-size: 14px;
+}
