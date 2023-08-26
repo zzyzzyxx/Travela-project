@@ -46,7 +46,7 @@
 						<td sec:authorize="hasRole('EMPLOYEE')"><a class="btn btn-primary" th:href="@{/editTourDetails/} + ${tour.id}">Edit details</a></td>
 						<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/deleteTour/} + ${tour.id}">Delete</a></td>
 						<td><a class="btn btn-success" th:href="@{/showTourDetails/} + ${tour.id}">Details</a></td>
-						<td sec:authorize="hasRole('CLIENT')"><a class="btn btn-success" th:href="@{/addUserToTour/} + ${tour.id}">Sign in</a></td>
+						<td sec:authorize="hasRole('CLIENT')"><a class="btn btn-success" th:href="@{/addUserToTour/} + ${tour.id}" onclick="showNotification()">Sign in</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -60,5 +60,6 @@
 			<a th:href="@{/}" class="btn btn-warning">Back</a>
 		</div>
 	</div>
+<script type="text/javascript" src="/js/script.js"></script>
 </body>
 </html>
