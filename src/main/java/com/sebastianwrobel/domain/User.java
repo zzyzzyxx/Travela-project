@@ -23,6 +23,15 @@ public class User {
 	
 	private String login;
 	
+	@Column(length = 68)
+	private String password;
+	
+	@Transient
+	private String confirmedPassword;
+	
+	private Boolean enabled;
+	
+	
 	@ManyToMany
 	@JoinTable(name = "tour_user",
 			   joinColumns = @JoinColumn(name = "user_id"),
@@ -51,5 +60,29 @@ public class User {
 
 	public void setTours(List<Tour> tours) {
 		this.tours = tours;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getConfirmedPassword() {
+		return confirmedPassword;
+	}
+
+	public void setConfirmedPassword(String confirmedPassword) {
+		this.confirmedPassword = confirmedPassword;
 	}
 }

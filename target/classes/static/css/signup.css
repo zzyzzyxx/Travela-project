@@ -1,8 +1,10 @@
 @charset "UTF-8";
 @import "style.css";
-html, body {
-	background-image: url(/img/login.png);
+
+html, body{
+	background-image: url(/img/signin.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100%;
 }
+

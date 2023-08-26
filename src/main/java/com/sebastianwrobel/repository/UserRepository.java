@@ -9,7 +9,7 @@ import com.sebastianwrobel.domain.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	//we need to check if the user already exists
-	//public Boolean existsByLogin(String login);
+	public Boolean existsByLogin(String login);
 	
 //	public User findByLogin(String login);
 	
