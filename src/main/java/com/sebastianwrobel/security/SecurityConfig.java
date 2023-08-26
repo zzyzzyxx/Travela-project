@@ -8,15 +8,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
+	
+
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,16 +36,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 			.antMatchers("/", "/login")
 				.permitAll()
+			.antMatchers("/addTour")
+				.hasAnyRole("ADMIN", "EMPLOYEE")
 			.and()
 				.formLogin()
+				.loginPage("/login")
+				.loginProcessingUrl("/checkUserAccount")
 				.defaultSuccessUrl("/")
 				.permitAll()
 			.and()
 				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true)
-				.permitAll();
+				.permitAll()
+			.and()
+				.exceptionHandling().accessDeniedPage("/forbidden");
 	}
-	
 }
 
