@@ -1,27 +1,41 @@
 package com.sebastianwrobel.web;
 
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sebastianwrobel.domain.Tour;
-import com.sebastianwrobel.service.TourService;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sebastianwrobel.api.domain.openweather.OpenWeatherMap;
+import com.sebastianwrobel.service.EternalAPIService;
 
 @Controller
 public class HomeController {
 		
+	@Autowired
+	private EternalAPIService externalAPIService;
+	
 	@GetMapping("/")
-	public String getHome() {
+	public String getTheWelcomePage() {
+		return "redirect:/home";
+	}
+//	
+//	@GetMapping("/home")
+//	public String getHome(ModelMap model) {
+//		return "home";
+//	}
+	
+	@GetMapping("/home")
+	public String getHome(HttpServletRequest request, ModelMap model) throws JsonProcessingException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		OpenWeatherMap openWeatherMap = externalAPIService.getData(request);
+		model.addAttribute("openWeatherMap", openWeatherMap);
+		
 		return "home";
 	}
 }
