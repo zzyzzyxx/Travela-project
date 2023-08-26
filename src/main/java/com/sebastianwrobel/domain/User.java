@@ -24,7 +24,7 @@ public class User {
 	private String login;
 	
 	@ManyToMany
-	@JoinTable(name = "tour2user",
+	@JoinTable(name = "tour_user",
 			   joinColumns = @JoinColumn(name = "user_id"),
 			   inverseJoinColumns = @JoinColumn(name = "tour_id"))
 	private List<Tour> tours;

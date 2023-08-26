@@ -16,5 +16,5 @@ public interface TourRepository extends JpaRepository<Tour, Integer> {
 	@Query("from Tour t left join fetch t.comments where t.id = :id")
 	public Tour getByIdWithComments(@Param("id")Integer id);
 	
-	//public List<Tour> findByDateBetween(Date currentDate, Date endDate);
+	public List<Tour> findByDateBetween(Date currentDate, Date endDate);
 }

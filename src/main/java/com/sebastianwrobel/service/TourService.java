@@ -1,13 +1,14 @@
 package com.sebastianwrobel.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sebastianwrobel.domain.Tour;
-import com.sebastianwrobel.domain.TourDetails;
 import com.sebastianwrobel.domain.User;
 import com.sebastianwrobel.repository.TourRepository;
 import com.sebastianwrobel.repository.UserRepository;
@@ -30,7 +31,6 @@ public class TourService {
 	}
 
 	public Tour findById(Integer id) {
-		//return tourRepo.findById(id).get();
 		return tourRepo.getOne(id);
 	}
 
@@ -38,29 +38,30 @@ public class TourService {
 		tourRepo.save(tour);
 	}
 	
-	public void addTourDetailsIfNotExists(Tour tour) {
-		if(tour.getTourDetails() == null) {
-			tour.setTourDetails(new TourDetails());
-			saveOrUpdate(tour);
-		}
-	}
+
 	
 	public Tour getByIdWithComments(int id) {
 		return tourRepo.getByIdWithComments(id);
 	}
 	
 	public void addUserToTour(Integer id, Integer userId) {
-		Tour tour = findById(id);
-		
+		Tour tour = findById(id);	
 		if(tour.getUsers() == null) {
 			tour.setUsers(new ArrayList<>());
-		}
-		
+		}	
 		User user = userRepo.getOne(userId);
 		if(user != null) {
 			tour.getUsers().add(user);
 			saveOrUpdate(tour);
 		}
 			
+	}
+	
+	public List<Tour> getAllForNextMonth() {
+		Date currentDate = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(currentDate);
+		calendar.add(Calendar.MONTH, 1);
+		return tourRepo.findByDateBetween(currentDate, calendar.getTime());
 	}
 }
