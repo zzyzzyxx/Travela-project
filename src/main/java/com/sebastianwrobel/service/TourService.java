@@ -38,18 +38,16 @@ public class TourService {
 		tourRepo.save(tour);
 	}
 	
-
-	
 	public Tour getByIdWithComments(int id) {
 		return tourRepo.getByIdWithComments(id);
 	}
 	
-	public void addUserToTour(Integer id, Integer userId) {
+	public void addUserToTour(Integer id, String login) {
 		Tour tour = findById(id);	
 		if(tour.getUsers() == null) {
 			tour.setUsers(new ArrayList<>());
 		}	
-		User user = userRepo.getOne(userId);
+		User user = userRepo.findByLogin(login);
 		if(user != null) {
 			tour.getUsers().add(user);
 			saveOrUpdate(tour);
