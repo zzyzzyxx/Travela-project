@@ -40,7 +40,7 @@ public class TourDetailsController {
 		}
 		return "redirect:/showOffer";
 	}
-	// working oneToOne relationship, OneToMany needs fixing
+	
 	@PostMapping("/processFormTourDetails")
 	public String processTourDetailsData(@ModelAttribute TourDetails tourDetails) {
 		tourDetailsService.saveOrUpdate(tourDetails);

@@ -5,24 +5,65 @@ html, body {
 	background-repeat: no-repeat;
 	height: 100%;
 }
+.logo{
+	width:200px;
+}
 
+header{
+	position: absolute;
+	z-index: 9999;
+	padding: 0.9rem 0;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	border-bottom: 1px;
+}
+
+header nav{
+	background-color:green	;
+	margin: 0 auto;
+	padding: 0 2rem;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 .container {
 	height: 100%;
 	align-content: center;
+	margin-top: 50px;
 }
 
 .card {
-	width: 350px;
+	width: auto;
 	height: auto;
-	margin-top: auto;
+	margin-top: 20px;
 	margin-bottom: auto;
-	background-color: rgba(0,0,0,0.6) !important;
+	background-color: grey;
 }
 
 .card-header {
 	color: white;
 	text-align: center;
 }
+
+    @media (max-width: 768px) {
+        .card-responsive-margin {
+            margin-top: 70px; 
+        }
+    }
+
+    @media (min-width: 769px) {
+        .card-responsive-margin {
+            margin-top: 10px; 
+        }
+    }
+
+.first-card {
+        background-color: #c0c0c0;
+        padding: 20px;
+        border-radius: 10px;
+    }
 
 .input-group-prepend span {
 	width: 40px;

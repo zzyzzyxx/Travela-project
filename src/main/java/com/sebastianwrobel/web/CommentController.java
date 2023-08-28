@@ -28,9 +28,6 @@ public class CommentController {
 		 List<Tour> tours = tService.findAll();
 		 model.addAttribute("tours", tours);
 		 model.addAttribute("comment", new Comment());
-		
-
-		
 		return "/form-comment";
 	}
 	
@@ -39,10 +36,7 @@ public class CommentController {
 	public String addCommentData(@ModelAttribute Comment comment) {
 
 		commentService.save(comment);
-		
-
-		
-		return "home";
+		return "redirect:/showOffer";
 	}
 	
 }
