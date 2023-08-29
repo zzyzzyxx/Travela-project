@@ -1,9 +1,16 @@
 @charset "UTF-8";
 
 html, body {
+	background-color: #f0f0f0;
 	background-size: cover;
 	background-repeat: no-repeat;
-	height: 100%;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+	/*height: 100%;*/
+	/*min-height: 100vh;*/
+    margin: 0; 
+    padding: 0;
 }
 .logo{
 	width:200px;
@@ -12,15 +19,15 @@ html, body {
 header{
 	position: absolute;
 	z-index: 9999;
-	padding: 0.9rem 0;
+	padding: 0.6rem 0;
 	top: 0;
 	left: 0;
 	width: 100vw;
-	border-bottom: 1px;
+	border-bottom: 1000px;
 }
 
 header nav{
-	background-color:green	;
+	background-color:green;
 	margin: 0 auto;
 	padding: 0 2rem;
 	width: 100%;
@@ -31,12 +38,12 @@ header nav{
 .container {
 	height: 100%;
 	align-content: center;
-	margin-top: 50px;
+	/*margin-top: 50px; */
 }
 
 .card {
 	width: auto;
-	height: auto;
+	min-height: 30px;
 	margin-top: 20px;
 	margin-bottom: auto;
 	background-color: grey;
@@ -49,20 +56,21 @@ header nav{
 
     @media (max-width: 768px) {
         .card-responsive-margin {
-            margin-top: 70px; 
+            margin-top: 10px; 
         }
     }
 
     @media (min-width: 769px) {
-        .card-responsive-margin {
-            margin-top: 10px; 
+        .card-responsive-margin {	
+            margin-top: 20px; 
         }
     }
 
 .first-card {
         background-color: #c0c0c0;
-        padding: 20px;
+
         border-radius: 10px;
+        flex: 1;
     }
 
 .input-group-prepend span {
@@ -89,6 +97,26 @@ header nav{
 
 .footer a {
 	margin-left: 40px;
+}
+
+#pagedown{
+    position: absolute;
+    z-index: 9999;
+    padding: 0.6rem 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    border-top: 3px solid black; /* Adding a top border for separation */
+    background-color:green;
+}
+
+#pagedown nav {
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .alert-login {
