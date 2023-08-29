@@ -33,30 +33,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/", "/login")
-		.permitAll()
-			.antMatchers("/addTour", "/editTour")
-			.hasAnyRole("EMPLOYEE")
-			.antMatchers("/deleteTour")
-			.hasAnyRole("ADMIN")
-			.antMatchers("/addComment", "/addUserToTour")
-			.hasAnyRole("CLIENT")
-		.and()
-			.formLogin()
-			.loginPage("/login")
-			.loginProcessingUrl("/checkUserAccount")
-			.defaultSuccessUrl("/")
-			.permitAll()
-		.and()
-			.logout()
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/")
-			.invalidateHttpSession(true)
-			.permitAll()
-		.and()
-			.exceptionHandling().accessDeniedPage("/forbidden");
-				
-	}
+		 http.authorizeRequests()
+         .antMatchers("/", "/login")
+         .permitAll()
+         .antMatchers("/addTour", "/editTour")
+         .hasAnyRole("EMPLOYEE")
+         .antMatchers("/deleteTour", "/editTour")
+         .hasAnyRole("ADMIN")
+         .antMatchers("/addComment", "/addUserToTour")
+         .hasRole("CLIENT") // Require CLIENT role to access comment submission
+     .and()
+         .formLogin()
+         .loginPage("/login")
+         .loginProcessingUrl("/checkUserAccount")
+         .defaultSuccessUrl("/")
+         .permitAll()
+     .and()
+         .logout()
+         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+         .logoutSuccessUrl("/")
+         .invalidateHttpSession(true)
+         .permitAll()
+     .and()
+         .exceptionHandling().accessDeniedPage("/forbidden");
+}
 }
 

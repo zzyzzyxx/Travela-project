@@ -40,9 +40,13 @@
 			<div th:if="${!tour.comments.empty}">
 				<h2>Comment</h2>
 				
-				<ul class="list-group" th:each="comment : ${tour.comments}">
-					<li class="list-group-item" th:text="${comment.content}"></li>
-				</ul>
+		<ul class="list-group" th:each="comment : ${tour.comments}">
+    		<li class="list-group-item">
+       			<span th:text="${comment.content}"></span>
+       		 	<span class="author"><strong th:text="'by ' + ${comment.author}"></strong></span>
+    		</li>
+		</ul>
+
 			</div>
 		</div>
 		

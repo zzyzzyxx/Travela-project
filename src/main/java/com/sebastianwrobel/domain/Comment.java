@@ -24,6 +24,8 @@ public class Comment{
 	@JoinColumn(name = "tour_id")
 	private Tour tour;
 	
+	@Column(length = 100)
+	private String author; // New field for the author of the comment
 	
 	public Integer getId() {
 		return id;
@@ -42,6 +44,12 @@ public class Comment{
 	}
 	public void setTour(Tour tour) {
 		this.tour = tour;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	
 }

@@ -124,3 +124,45 @@ header nav{
 	border: 0 !important;
 	color: white;
 }
+
+.notification {
+  position: fixed;
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  animation: blink 1s infinite, sparkle 1s infinite; /* Apply the animations */
+  max-width: 300px;
+  bottom: 60px; 
+  right: 20px; 
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  25% {
+    opacity: 0.8;
+    transform: translate(5px, -5px);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  75% {
+    opacity: 0.8;
+    transform: translate(-5px, -5px);
+  }
+}
+
+

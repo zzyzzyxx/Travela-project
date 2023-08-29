@@ -3,6 +3,8 @@ package com.sebastianwrobel.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +36,15 @@ public class CommentController {
 
 	@PostMapping("/processFormComment")
 	public String addCommentData(@ModelAttribute Comment comment) {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    boolean isClient = authentication.getAuthorities().stream()
+	            .anyMatch(auth -> auth.getAuthority().equals("ROLE_CLIENT"));
 
-		commentService.save(comment);
+	    if (isClient) {
+	        String author = authentication.getName(); // Retrieve the username of the logged-in user
+	        comment.setAuthor(author); // Set the author's name
+	        commentService.save(comment);
+	    }
 		return "redirect:/showOffer";
 	}
 	
