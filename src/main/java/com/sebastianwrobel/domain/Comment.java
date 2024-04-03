@@ -27,6 +27,7 @@ public class Comment{
 	@Column(length = 100)
 	private String author; // New field for the author of the comment
 	
+	//getters and setters
 	public Integer getId() {
 		return id;
 	}
