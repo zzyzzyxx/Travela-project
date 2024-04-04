@@ -7,5 +7,5 @@ import com.sebastianwrobel.domain.Comment;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment,Integer> {
-
+// to display 
 }
